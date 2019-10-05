@@ -75,10 +75,5 @@ def callback():
         return "You don't have a battle.net account linked! Please link your battle.net account to your discord to continue."
 
 
-@app.route("/test/")
-def test():
-    s.set("a", 1)
-    return "ok"
-
 if __name__ == "__main__":
     app.run()
