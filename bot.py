@@ -61,7 +61,7 @@ async def on_raw_reaction_add(payload: discord.RawReactionActionEvent):
         if payload.message_id == bot_config.reaction_message_id:
             if payload.emoji.name == bot_config.target_emoji:
                 embed = discord.Embed(title="Verify your beginner status",
-                                      description="[Click here](http://127.0.0.1:5000/) to verify that you're a beginner",
+                                      description=f"[Click here]({bot_config.start_uri}) to verify that you're a beginner",
                                       color=0x4284f5)
                 embed.set_footer(text="After verifying your rank, all data and authorizations are automatically removed")
                 await user.send(embed=embed)

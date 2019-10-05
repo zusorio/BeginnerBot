@@ -1,7 +1,7 @@
 import requests
 import redis
 import pickle
-from os import urandom
+import os
 from config import Config
 
 from flask import Flask
@@ -9,9 +9,9 @@ from flask_discord import DiscordOAuth2Session
 
 app_config = Config()
 app = Flask(__name__)
-app.secret_key = urandom(24)
+app.secret_key = os.urandom(24)
 
-
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 app.config["DISCORD_CLIENT_ID"] = app_config.client_id
 app.config["DISCORD_CLIENT_SECRET"] = app_config.client_secret
 app.config["DISCORD_REDIRECT_URI"] = app_config.redirect_uri
@@ -74,6 +74,11 @@ def callback():
     else:
         return "You don't have a battle.net account linked! Please link your battle.net account to your discord to continue."
 
+
+@app.route("/test/")
+def test():
+    s.set("a", 1)
+    return "ok"
 
 if __name__ == "__main__":
     app.run()
