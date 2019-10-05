@@ -1,0 +1,8 @@
+FROM python:3
+RUN pip3 install discord.py requests redis
+RUN mkdir -p /usr/src/bot
+WORKDIR /usr/src/bot
+COPY bot.py /usr/src/bot
+COPY config.py /usr/src/bot
+COPY config.json /usr/src/bot
+ENTRYPOINT ["python3", "bot.py"]

@@ -1,0 +1,5 @@
+flask
+Flask-Discord
+requests
+discord.py
+redis

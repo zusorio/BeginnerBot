@@ -1,0 +1,7 @@
+FROM python:3
+COPY oauth_claim.py /app
+COPY config.py /app
+COPY config.json /app
+RUN pip3 install flask Flask-Discord redis requests
+EXPOSE 8000
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "app"]
